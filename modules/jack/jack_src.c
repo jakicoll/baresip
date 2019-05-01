@@ -149,13 +149,16 @@ static int start_jack(struct ausrc_st *st)
 		return ENODEV;
 	}
 
-	for (ch=0; ch<st->prm.ch; ch++) {
+	// WHEW 100
+	// Do not autoconnect; this is done by qjackctl / patchfield
+	// In our case, default connects to the wrong ports.
+	/*for (ch=0; ch<st->prm.ch; ch++) {
 
 		if (jack_connect(st->client, ports[ch],
 				 jack_port_name(st->portv[ch]))) {
 			warning("jack: cannot connect output ports\n");
 		}
-	}
+	}*/
 
 	jack_free(ports);
 
