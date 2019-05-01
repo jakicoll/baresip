@@ -165,7 +165,11 @@ static int start_jack(struct auplay_st *st)
 		warning("jack: no physical playback ports\n");
 		return ENODEV;
 	}
-
+	
+	// WHEW 100
+	// Do not autoconnect; this is done by qjackctl / patchfield
+	// In our case, default connects to the wrong ports.
+	/*
 	for (ch=0; ch<st->prm.ch; ch++) {
 
 		if (jack_connect (st->client, jack_port_name (st->portv[ch]),
@@ -173,6 +177,7 @@ static int start_jack(struct auplay_st *st)
 			warning("jack: cannot connect output ports\n");
 		}
 	}
+	*/
 
 	jack_free(ports);
 
